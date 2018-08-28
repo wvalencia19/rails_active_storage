@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+</head>
+
+
+<body>
+<!-- ******HEADER****** -->
+<header class="header">
+  <div class="container">
+    <div style="padding-top:20px;">
+      <div class="row" style="margin-top:0px;">
+        <div class="col-md-3">
+          <h1><%= @profile.name.capitalize %></h1>
+        </div>
+        <div class="col-md-2">
+          <div class="button" style="float:right;">
+            <%= link_to 'Back', profiles_path, class: 'btn btn-outline-info btn-sm' %>
+            <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-outline-info btn-sm' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:20px;">
+      <div class="col-md-2"> <!-- Image -->
+        <% if @profile.image.attached? %>
+            <%= image_tag @profile.image.variant(resize: '150x300') %>
+        <% end %>
+      </div>
+
+      <div class="col-md-3"> <!-- description -->
+        <h5 style="color:#5bc0de">My Work Experience:</h5>
+
+        <p><%= @profile.description %></p>
+      </div>
+
+    </div>
+  </div>
+</header>
+<!--End of Header-->
+
+<!-- Main container -->
+<div class="container">
+  <!-- Section:Twitter -->
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+      <h5 style="color:#5bc0de"><%= "#{@profile.twitter_account}'s Timeline" %></h5>
+      </p>
+      <a class="twitter-timeline" href=<%= "https://twitter.com/#{@profile.twitter_account}?ref_src=twsrc%5Etfw" %>
+              data-width="400"
+         data-height="100"
+         data-chrome="noheader nofooter noborders transparent"
+         data-tweet-limit="5"></a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+</div>
